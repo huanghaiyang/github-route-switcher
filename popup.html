@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>GitHub 线路</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="brand">GitHub 线路<span class="sub">探测 · 自动切换</span></div>
+    <label class="switch" title="总开关">
+      <input type="checkbox" id="enabled">
+      <span class="slider"></span>
+    </label>
+  </header>
+
+  <section class="card">
+    <div class="kv"><span>当前接管</span><b id="activeName">—</b></div>
+    <div class="kv"><span>延迟</span><b id="activeMs">—</b></div>
+    <div class="kv"><span>生效规则</span><b id="ruleCount">—</b></div>
+    <div class="kv"><span>上次探测</span><b id="lastProbe">—</b></div>
+    <button id="probe" class="primary">重新探测</button>
+    <div id="ruleError" class="err"></div>
+  </section>
+
+  <section class="card">
+    <div class="listhead"><span>线路</span><span>网页</span><span>git</span><span></span></div>
+    <div id="rows" class="rows"></div>
+  </section>
+
+  <section class="card">
+    <div class="kv"><span>git 推荐</span><b id="gitBest">—</b></div>
+    <code id="gitCmd" class="cmd">—</code>
+    <div class="btnrow">
+      <button id="copyGit">复制 git 配置</button>
+      <button id="copyRemove" class="ghost">复制撤销命令</button>
+    </div>
+    <div class="hint">浏览器插件管不到终端。想在终端加速 <code>git clone</code>，把上面这条粘贴执行一次即可。</div>
+  </section>
+
+  <details>
+    <summary>高级设置</summary>
+
+    <label class="chk"><input type="checkbox" id="autoSwitch"> 失败时自动换线</label>
+    <label class="chk"><input type="checkbox" id="preferDirect"> 直连不慢太多就优先直连</label>
+    <label class="chk"><input type="checkbox" id="proxyWebPages"> 连 github.com 网页 / API 也接管（不推荐）</label>
+
+    <div class="grid">
+      <label>超时(ms)<input type="number" id="timeoutMs" min="1000" step="500"></label>
+      <label>重探间隔(分)<input type="number" id="intervalMinutes" min="1" step="1"></label>
+      <label>失败阈值<input type="number" id="failThreshold" min="1" step="1"></label>
+    </div>
+
+    <label class="lbl">网页探测目标（要小、要稳定）</label>
+    <input type="text" id="webProbe">
+
+    <label class="lbl">git 探测仓库</label>
+    <input type="text" id="gitProbe">
+
+    <label class="lbl">线路表（每行：名称|模板|web|git，可用 {url} 或 {urlNoScheme}）</label>
+    <textarea id="mirrors" rows="9" spellcheck="false"></textarea>
+
+    <div class="btnrow">
+      <button id="saveAdv" class="primary">保存并重探</button>
+      <button id="restoreBuiltin" class="ghost">恢复内置线路</button>
+    </div>
+  </details>
+
+  <details>
+    <summary>最近事件</summary>
+    <div id="log" class="log"></div>
+    <button id="resetLog" class="ghost">清空</button>
+  </details>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

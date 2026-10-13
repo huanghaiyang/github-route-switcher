@@ -1,0 +1,146 @@
+:root {
+  --bg: #16181d;
+  --card: #1e2128;
+  --line: #2c313a;
+  --fg: #e6e8ec;
+  --dim: #9aa2af;
+  --ok: #3ecf8e;
+  --bad: #ef5f5f;
+  --wait: #d8a657;
+  --accent: #4c8dff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 400px;
+  margin: 0;
+  padding: 10px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 12px/1.5 "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px 10px;
+}
+
+.brand { font-size: 14px; font-weight: 600; }
+.brand .sub { margin-left: 6px; font-size: 11px; font-weight: 400; color: var(--dim); }
+
+/* 开关 */
+.switch { position: relative; width: 40px; height: 22px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; inset: 0; border-radius: 22px;
+  background: #3a3f49; transition: background .15s;
+}
+.slider::before {
+  content: ""; position: absolute; width: 16px; height: 16px; border-radius: 50%;
+  left: 3px; top: 3px; background: #fff; transition: transform .15s;
+}
+.switch input:checked + .slider { background: var(--accent); }
+.switch input:checked + .slider::before { transform: translateX(18px); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.kv { display: flex; justify-content: space-between; gap: 8px; padding: 1px 0; }
+.kv span { color: var(--dim); }
+.kv b { font-weight: 600; text-align: right; word-break: break-all; }
+
+button {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #262a32;
+  color: var(--fg);
+  cursor: pointer;
+  font-size: 12px;
+}
+button:hover { background: #2f343d; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; width: 100%; }
+button.primary:hover { filter: brightness(1.1); }
+button.ghost { background: transparent; color: var(--dim); }
+.btnrow { display: flex; gap: 6px; }
+.btnrow button { flex: 1; }
+
+.listhead, .row {
+  display: grid;
+  grid-template-columns: 1fr 56px 56px 44px;
+  gap: 6px;
+  align-items: center;
+}
+.listhead {
+  color: var(--dim);
+  font-size: 11px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 4px;
+}
+.rows { max-height: 190px; overflow-y: auto; }
+.row { padding: 3px 0; }
+.row .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row .name.is-active { color: var(--accent); font-weight: 600; }
+.row .ms { text-align: right; font-variant-numeric: tabular-nums; }
+.ok { color: var(--ok); }
+.bad { color: var(--bad); }
+.wait { color: var(--wait); }
+.row button { margin: 0; padding: 2px 6px; font-size: 11px; }
+
+.cmd {
+  display: block;
+  margin-top: 6px;
+  padding: 7px 8px;
+  background: #12141a;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 11px;
+  word-break: break-all;
+  user-select: all;
+}
+
+.hint { margin-top: 6px; color: var(--dim); font-size: 11px; }
+.err { margin-top: 6px; color: var(--bad); font-size: 11px; word-break: break-all; }
+
+details { margin-bottom: 8px; }
+summary { cursor: pointer; color: var(--dim); padding: 4px 2px; }
+details .chk { display: flex; gap: 6px; align-items: center; margin: 6px 0; color: var(--fg); }
+.grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px; }
+.grid label { display: flex; flex-direction: column; gap: 2px; color: var(--dim); font-size: 11px; }
+.lbl { display: block; margin-top: 8px; color: var(--dim); font-size: 11px; }
+
+input[type="number"], input[type="text"], textarea {
+  width: 100%;
+  padding: 5px 6px;
+  background: #12141a;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--fg);
+  font-size: 11px;
+  font-family: inherit;
+}
+textarea { font-family: Consolas, "Courier New", monospace; resize: vertical; }
+
+.log {
+  max-height: 130px;
+  overflow-y: auto;
+  background: #12141a;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 10.5px;
+  color: var(--dim);
+}
+.log div { padding: 1px 0; border-bottom: 1px dashed #22262e; }

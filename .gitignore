@@ -1,0 +1,19 @@
+# 依赖
+node_modules/
+
+# 扩展打包产物 / 签名私钥（.pem 绝不能进仓库）
+*.zip
+*.crx
+*.pem
+dist/
+build/
+
+# 日志
+*.log
+npm-debug.log*
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

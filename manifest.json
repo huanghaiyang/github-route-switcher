@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub 线路探测 · 自动切换",
+  "version": "1.0.0",
+  "description": "并发探测可用的 GitHub 镜像线路（网页能力 + git 能力分开测），自动把 raw / release / archive 下载切到最快可用的一条，失败自动换线，并生成终端用的 git insteadOf 配置。",
+  "permissions": [
+    "storage",
+    "alarms",
+    "declarativeNetRequest",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GitHub 线路"
+  }
+}

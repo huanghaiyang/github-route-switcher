@@ -1,0 +1,10 @@
+{
+  "name": "github-route-switcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome 扩展：GitHub 线路探测与自动切换（package.json 仅用于本地跑测试，Chrome 不读它）",
+  "type": "module",
+  "scripts": {
+    "test": "node selftest.mjs"
+  }
+}
